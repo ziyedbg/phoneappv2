@@ -254,7 +254,7 @@ function uploadFile(mediaFile) {
            // $('.loader-image').fadeOut(100);
             $('#camera-block').css('display','none');$('#product-add').fadeIn(1000);
             $('#cap_image_').val(name);
-            $('#img-holder').html('<img src="'+path+'" width="80" height="50" style=" padding: 0 0 3px;" />');
+            $('#img-holder').html('<img src="'+path+'" width="120" height="80" style=" padding: 0 0 3px;" />');
             navigator.geolocation.getCurrentPosition(
                 function (position) {
                     $('#lat_').val(position.coords.latitude);
