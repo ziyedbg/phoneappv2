@@ -196,6 +196,11 @@ $(document).ready(function(){
         $('#camera-block').fadeIn(1000);
     })
 
+     $('#logout-btn').click(function(){
+        $('#camera-block').css('display','none');
+        $('#home-block').fadeIn(1000);
+    })
+
 });
 
 //Camera Section
@@ -208,11 +213,7 @@ function onDeviceReady() {}
 // Called when capture operation is finished
 //
 function captureSuccess(mediaFiles) {
-    //$('.loader-image').fadeIn(100);
-    //var i, len;
-    //for (i = 0, len = mediaFiles.length; i < len; i += 1) {
-        //uploadFile(mediaFiles[i]);
-    //}
+        $('.error_cam').html('<h1>Please wait....</h1>');
         uploadFile(mediaFiles[0]);
 }
 
