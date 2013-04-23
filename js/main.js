@@ -196,7 +196,7 @@ $(document).ready(function(){
         $('#camera-block').fadeIn(1000);
     })
 
-})
+});
 
 //Camera Section
 // Wait for PhoneGap to load
