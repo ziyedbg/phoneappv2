@@ -252,7 +252,7 @@ function uploadFile(mediaFile) {
     var ft = new FileTransfer();
     ft.upload( path, "http://117.58.246.154/dfphoneapp/home/image_upload",
         function(result) {
-           // $('.loader-image').fadeOut(100);
+            $('.error_cam').html('');
             $('#camera-block').css('display','none');$('#product-add').fadeIn(1000);
             $('#cap_image_').val(name);
             $('#img-holder').html('<img src="'+path+'" width="120" height="80" style=" padding: 0 0 3px;" />');
