@@ -29,7 +29,7 @@ $(document).ready(function(){
     var base_url = 'http://117.58.246.154/dfphoneapp/';
     
     $('#date').datepicker({
-        dateFormat: 'yy-mm-dd',
+        dateFormat: 'mm/dd/yy',
         changeMonth: true,
         changeYear: true,
         yearRange: "-100:+0"
@@ -37,7 +37,7 @@ $(document).ready(function(){
     });
 
     $('#date_').datepicker({
-        dateFormat: 'yy-mm-dd',
+        dateFormat: 'mm/dd/yy',
         changeMonth: true,
         changeYear: true,
         yearRange: "-10:+50"
@@ -119,10 +119,14 @@ $(document).ready(function(){
                     $('.error_reg').html('Registration not success!').css('display','block');
                     return false;
                 }
+                if( res.value === 3 ) {
+                    $('.error_reg').html('Email already registered!').css('display','block');
+                    return false;
+                }
                 if( res.value === 1 ){
-                    $('.error').html('Registration successful!').css('display','block');
+                    // $('.error').html('Registration successful!').css('display','block');
                     $('#registration-block').css('display','none');
-                    $('#home-block').fadeIn(1000);
+                    $('#camera-block').fadeIn(1000);
                 }
             }
         });
@@ -173,6 +177,10 @@ $(document).ready(function(){
                 if( res.value === 1 ){
                     $('#product-add').css('display','none');
                     $('#thanks-block').fadeIn(1000);
+                    setTimeout(function() {
+                        $('#thanks-block').css('display','none');
+                        $('#camera-block').fadeIn(1000);
+                    }, 3000);
                 }
             }
         });
@@ -182,10 +190,12 @@ $(document).ready(function(){
         $('#home-block').css('display','none');
         $('#registration-block').fadeIn(1000);
     })
+    
     $('#back-to-home').click(function(){
         $('#registration-block').css('display','none');
         $('#home-block').fadeIn(1000);
     })
+
     $('#product-back-btn').click(function(){
         $('#product-add').css('display','none');
         $('#camera-block').fadeIn(1000);
@@ -196,8 +206,18 @@ $(document).ready(function(){
         $('#camera-block').fadeIn(1000);
     })
 
-     $('#logout-btn').click(function(){
+    $('#logout-btn').click(function(){
         $('#camera-block').css('display','none');
+        $('#home-block').fadeIn(1000);
+    })
+
+    $('.about-btn').click(function(){
+        $('#home-block').css('display','none');
+        $('#about-block').fadeIn(1000);
+    })
+
+    $('#back-to-home-about').click(function(){
+        $('#about-block').css('display','none');
         $('#home-block').fadeIn(1000);
     })
 
@@ -213,8 +233,8 @@ function onDeviceReady() {}
 // Called when capture operation is finished
 //
 function captureSuccess(mediaFiles) {
-        $('.error_cam').html('<h1>Please wait....</h1>');
-        uploadFile(mediaFiles[0]);
+    $('.error_cam').html('<h1>Please wait....</h1>');
+    uploadFile(mediaFiles[0]);
 }
 
 // Called if something bad happens.
@@ -229,7 +249,9 @@ function captureError(error) {
 function captureImage() {
     // Launch device camera application,
     // allowing user to capture up to 1 images
-    navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 1});
+    navigator.device.capture.captureImage(captureSuccess, captureError, {
+        limit: 1
+    });
 }
 
 // Upload files to server
@@ -253,7 +275,8 @@ function uploadFile(mediaFile) {
     ft.upload( path, "http://117.58.246.154/dfphoneapp/home/image_upload",
         function(result) {
             $('.error_cam').html('');
-            $('#camera-block').css('display','none');$('#product-add').fadeIn(1000);
+            $('#camera-block').css('display','none');
+            $('#product-add').fadeIn(1000);
             $('#cap_image_').val(name);
             $('#img-holder').html('<img src="'+path+'" width="120" height="80" style=" padding: 0 0 3px;" />');
             navigator.geolocation.getCurrentPosition(
