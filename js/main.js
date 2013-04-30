@@ -136,10 +136,11 @@ $(document).ready(function(){
     //product add
     $('#product-add-submit').click(function(){
         var url = base_url+'home/product_save';  // you'll want to change
-        var store, brand, size, price, date, image, lat, lang;
+        var store, brand, size, price, date, image, lat, lang, sizeval;
         store = $('#store_').val();
         brand = $('#brand_').val();
         size = $('#size_').val();
+        sizeval = $('#sizeval_').val();
         price = $('#price_').val();
         date = $('#date_').val();
         image = $('#cap_image_').val();
@@ -158,6 +159,7 @@ $(document).ready(function(){
                 store_ : store,
                 brand_ : brand,
                 size_ : size,
+                sizeval_ : sizeval,
                 price_ : price,
                 date_ : date,
                 image_ : image,
